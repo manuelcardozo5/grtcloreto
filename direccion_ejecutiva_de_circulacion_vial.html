@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>direccion_ejecutiva_de_circulacion_vial</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #003087 0%, #002366 100%);
+      padding: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .logo-img {
+      height: 120px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+    
+    .partner-logos {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    nav {
+      background: linear-gradient(to right, #e60000, #c50000);
+      padding: 10px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ESTILOS MEJORADOS PARA DROPDOWN */
+    .dropdown {
+      position: relative;
+      margin: 0 8px;
+    }
+  
+    .dropdown > a {
+      color: white;
+      padding: 12px 18px;
+      text-decoration: none;
+      display: inline-block;
+      background-color: transparent;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .dropdown:hover > a {
+      background-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+  
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 240px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      z-index: 1000;
+      border-radius: 8px;
+      overflow: hidden;
+      transform-origin: top center;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+  
+    .dropdown-content a {
+      color: #003087;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+  
+    .dropdown-content a:hover {
+      background-color: rgba(0, 48, 135, 0.05);
+      border-left: 3px solid #e60000;
+      padding-left: 20px;
+    }
+  
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ESTILOS MEJORADOS PARA BLOQUES CON EFECTO ZOOM */
+    .opciones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('https://i.postimg.cc/zGgt50s6/logo-portal-web.jpg') no-repeat center center;
+      background-size: cover;
+      perspective: 1000px;
+      gap: 20px;
+    }
+
+    .opcion {
+      background: linear-gradient(145deg, #e60000, #c50000);
+      color: white;
+      padding: 25px 20px;
+      width: 260px;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: scale(0.95);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border: none;
+    }
+
+    .opcion:hover {
+      transform: translateY(-10px) scale(1);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .opcion::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .opcion:hover::before {
+      left: 100%;
+    }
+
+    .opcion svg {
+      width: 40px;
+      height: 40px;
+      fill: white;
+      margin-bottom: 15px;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .opcion:hover svg {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .opcion h3 {
+      margin: 15px 0 10px;
+      transition: all 0.3s ease;
+      font-size: 1.2em;
+      position: relative;
+      font-weight: 600;
+    }
+
+    .opcion:hover h3 {
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .opcion p {
+      transition: all 0.3s ease;
+      opacity: 0.9;
+      font-size: 0.95em;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* SECCIÓN NOTICIAS MEJORADA */
+    .noticias {
+      background: #fff;
+      padding: 50px 20px;
+    }
+
+    .noticias-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .noticias h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #003087;
+      font-size: 2em;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .noticias h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, #003087, #e60000);
+      border-radius: 3px;
+    }
+
+    .noticia-lista {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .noticia {
+      background: white;
+      padding: 0;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .noticia:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .noticia-img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .noticia-content {
+      padding: 20px;
+    }
+
+    .noticia h4 {
+      margin: 0 0 10px;
+      color: #003087;
+      font-size: 1.3em;
+    }
+
+    .noticia p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .noticia-date {
+      display: block;
+      color: #e60000;
+      font-weight: 500;
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    /* FOOTER */
+    footer {
+      background: linear-gradient(135deg, #003087 0%, #002366 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      border-bottom: 2px solid #e60000;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section li {
+      margin: 10px 0;
+    }
+
+    .footer-section a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="header-container">
+      <img src="https://i.postimg.cc/Gh0rYctW/LOGO-WEB-2025.png" alt="GRTC Loreto" class="logo-img">
+  
+      <div class="partner-logos">
+        <img src="https://i.postimg.cc/FFMjyNdd/logo-portal-pte.png" alt="Portal PTE" class="logo-img">
+        <a href="https://www.gob.pe/" target="_blank">
+          <img src="https://i.postimg.cc/B6wC9FnM/logo-gobpe-blanco.png" alt="logo-gobpe-blanco" style="height: 50px; width: auto; border: 0;">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-container">
+      <div class="dropdown">
+        <a href="web_grtc_loreto.html">INICIO</a>
+        <div class="dropdown-content">
+        </div>
+      </div>
+
+   
+
+      
+
+      <div class="dropdown">
+        <a href="#">DIRECCIÓN EJECUTIVA DE CIRCULACION VIAL.</a>
+        <div class="dropdown-content">
+         <a href="sub_dirección_de_estudios_y_supervicion.html">SUB DIRECCION DE ESTUDIOS Y SUPERVICION.</a>
+          <a href="sub_dirección_de_laboratorio_y_suelos.html">SUB DIRECCION DE LABORATORIO Y SUELOS.</a>
+        
+       </div>
+      </div>
+
+      
+
+      <div class="dropdown">
+        
+        <div class="dropdown-content">
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+
+ 
+
+    
+
+    
+    
+    
+    </div>
+  </div>
+
+  <section class="noticias">
+    <div class="noticias-container">
+
+      <!--imagen de los precios 
+      <div class="imagen-precios">
+        <a href='https://postimg.cc/tYytmkBc' target='_blank'>
+          <img src='https://i.postimg.cc/rFRnsYxq/precios.jpg' alt='Tabla de precios' style='width: 250%; max-width: 1000px; height: auto; border: 0;'/>
+        </a>
+      </div>
+      
+      <style>
+        .imagen-precios {
+          margin: 20px 0;
+          text-align: center; /* Centra la imagen */
+        }
+        
+        .imagen-precios img {
+          border-radius: 8px; /* Bordes redondeados */
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
+          transition: transform 0.3s ease; /* Efecto hover suave */
+        }
+        
+        .imagen-precios img:hover {
+          transform: scale(1.12); /* Efecto de zoom al pasar el mouse */
+        }
+      </style>  -->
+
+
+
+        <h2>SUB DIRECCIÓN DE LABORATORIO DE SUELOS.</h2>
+      
+      <div class="noticia-lista">
+        <div class="noticia">
+          <!--<img src="" alt="Noticia 1" class="noticia-img">-->
+          
+          <img src="https://i.postimg.cc/ncpTB288/laborario-1.jpg" 
+          alt="laborario-1" 
+          style="max-width: 100%; height: auto; border: 0;">
+
+          <div class="noticia-content">
+            <h4>"OFRECEMOS SERVICIOS TÉCNICOS CONFIABLES, BASADOS EN PROCEDIMIENTOS NORMALIZADOS, PRECISOS Y OPORTUNOS, ORIENTADOS AL DESARROLLO Y CONTROL DE CALIDAD DE OBRAS DE INFRAESTRUCTURA VIAL Y URBANA."</h4>
+            <h4>Misión:</h4>
+            <div class="contenido">
+              <p class="destacado">Brindar servicios técnicos especializados, confiables y oportunos en ensayos de suelos, agregados y materiales relacionados, aplicando procedimientos normalizados que garanticen la calidad y seguridad de las obras de infraestructura vial y urbana en la región Loreto, en cumplimiento de los estándares técnicos y normativos vigentes.</p>
+              
+
+              <h4>Visión:</h4>
+              <p>Ser un laboratorio regional de referencia en el ámbito del control de calidad de materiales para infraestructura vial y urbana, reconocido por su rigor técnico, transparencia y contribución al desarrollo sostenible de la región Loreto.</p>
+              
+             <!-- <p>Durante el evento, expertos de distintas instituciones compartieron sus conocimientos. El fiscal Efraín Yanarico habló sobre los peligros legales de conducir bajo los efectos del alcohol, mientras que la Policía Nacional abordó las infracciones más frecuentes en la carretera Iquitos–Nauta. También se brindaron nociones esenciales de primeros auxilios, gracias a la Compañía de Bomberos, y se actualizó a los asistentes sobre las normas de tránsito y transporte terrestre.</p>
+              
+              <p>La GRTC destacó que su labor va más allá de la fiscalización: buscan prevenir accidentes, capacitar y sensibilizar a quienes están al volante. Los conductores, visiblemente agradecidos, recibieron certificados que respaldan su participación, y aplaudieron el esfuerzo por brindarles herramientas para mejorar su desempeño diario.</p>
+            -->
+            </div>  
+
+            <span class="noticia-date">25 de Abril, 2025</span>
+          </div>
+        </div>
+        
+
+
+          
+        <div class="noticia-lista">
+          <div class="noticia">
+          <!--<img src="https://i.postimg.cc/8z9JZJQr/noticia2.jpg" alt="Noticia 2" class="noticia-img">-->
+          
+          <a href="https://postimg.cc/gXHwztLX" target="_blank">
+              <img src="https://i.postimg.cc/3RP2ZPKB/laborario-4.jpg" 
+              alt="laborario-4" 
+              style="max-width: 100%; height: auto; border: 0;">
+            </a>
+
+          <div class="noticia-content">
+            <h4>LA SUB DIRECCIÓN DE LABORATORIO DE SUELOS, REALIZA DIVERSAS FUNCIONES COMO: </h4>
+            <p>-	Evaluación de la condición del suelo y pavimento existente.</p>
+            <p>-	Control de calidad de los materiales durante la elaboración de estudios y construcción.</p>
+            <p>-	Control y verificación en campo de trabajos que se realicen según lo proyectado.</p>
+            
+            <p>Así mismo se realiza acciones de investigación, para mejorar los diseños y sean considerados en las obras.</p>
+            <p>Contamos con modernos equipos digitales, como el ensayo de compresión de concreto y el equipo de corte directo, además de todos los accesorios necesarios para realizar pruebas de laboratorio en suelos. Todos nuestros equipos están calibrados y listos para ofrecer resultados confiables, que ayudan a tomar decisiones técnicas con mayor seguridad y confianza.</p>
+            <span class="noticia-date">28 de Abril, 2025</span>
+          </div>
+        </div>
+        
+
+
+        <div class="noticia">
+          <!--<img src="https://i.postimg.cc/8z9JZJQr/noticia3.jpg" alt="Noticia 3" class="noticia-img">-->
+          <a href="https://postimages.org/" target="_blank">
+            <img src="https://i.postimg.cc/6pn67gSK/laborario-2.jpg" 
+                 alt="laborario-2" 
+                 style="max-width: 100%; height: auto; border: 0;">
+        </a>
+
+
+          <div class="noticia-content">
+            <h4>LA SUBDIRECCIÓN DE LABORATORIO DE SUELOS APOYA A ESTUDIANTES EN ENSAYOS DE LABORATORIO Y ANÁLISIS DE RESULTADOS EN CARRERAS TÉCNICAS Y PROFESIONALES.</h4>
+            <p>El laboratorio de suelos constituye un recurso fundamental para la formación integral de los estudiantes de los programas técnicos en construcción civil y de ingeniería civil, al brindarles la oportunidad de complementar su aprendizaje teórico con experiencias prácticas directamente relacionadas con el análisis y comportamiento del suelo en contextos reales. </p>
+            <p>A través del uso de equipos especializados y la ejecución de ensayos normalizados, los estudiantes desarrollan competencias técnicas esenciales, como la recolección y análisis de muestras, la interpretación de resultados geotécnicos y la elaboración de informes técnicos.</p>
+           <p> Asimismo, el laboratorio apoya el desarrollo de proyectos académicos, prácticas supervisadas y trabajos de investigación, fortaleciendo el pensamiento crítico y la capacidad de resolución de problemas. Este espacio también actúa como un puente entre la academia y la industria, al preparar a los futuros profesionales para enfrentar con solvencia los desafíos propios del ejercicio.</p>
+            <span class="noticia-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+  </section>
+  
+<!--imagen de los precios -->
+
+<div class="contenedor-imagen-lab">
+  <a href='https://postimg.cc/sML6M8rL' target='_blank' class="enlace-imagen-lab">
+    <img src='https://i.postimg.cc/cJxVby5d/Tusne-2025-Laboratorio-1.jpg' alt='Tusne 2025 Laboratorio' class="imagen-lab"/>
+  </a>
+</div>
+
+<style>
+  .contenedor-imagen-lab {
+    margin: 25px auto;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .enlace-imagen-lab {
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  
+  .enlace-imagen-lab:hover {
+    opacity: 0.9;
+  }
+  
+  .imagen-lab {
+    width: 95%; /* Ajusta este porcentaje según necesites */
+    max-width: 920px; /* Ancho máximo en píxeles */
+    min-width: 290px; /* Ancho mínimo en móviles */
+    height: auto;
+    border: 3px solid #f0f0f0; /* Borde sutil */
+    border-radius: 13px;
+    box-shadow: 0 7px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .imagen-lab:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  
+  /* Responsive para tablets */
+  @media (max-width: 768px) {
+    .imagen-lab {
+      width: 92%;
+      max-width: 100%;
+    }
+  }
+  
+  /* Responsive para móviles */
+  @media (max-width: 480px) {
+    .imagen-lab {
+      width: 95%;
+      border-radius: 8px;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="header-container">
+        
+          
+          <footer>
+            <div class="footer-container">
+              <div class="footer-section">
+                <div class="header-container">
+
+
+                 
+
+                
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="align-self: center; margin-right: 1cm;"> <!-- Cambiado a margin-right -->
+                      <a href='https://postimg.cc/k60CLH8b' target='_blank'>
+                        <img src='https://i.postimg.cc/prTd5bLq/logos-nuevo-2.png' border='0' alt='logos-nuevo-2' style="max-height: 130px;"/>
+                      </a>
+                    </div>
+        
+        
+
+
+
+
+                <div class="footer-section">
+                <h3>CONTACTO</h3>
+
+                  
+                <ul>
+                  <li><a href="tel:065260990">Teléfono: 065-260990</a></li>
+                  <li><a href="mailto:informes@grtcloreto.gob.pe">Email: informes@grtcloreto.gob.pe</a></li>
+                  <li>Dirección: Av JoséAbelardo Quiñones KM 3.5San Juan</li>
+                  <li>Horario: L-V 7:00am - 3:00pm</li>
+                </ul>
+              </div>
+              
+              <div class="footer-section">
+                <h3>ENLACES RÁPIDOS</h3>
+                <ul>
+                  <li><a href="#">Trámites en línea</a></li>
+                  <li><a href="#">Consultas de multas</a></li>
+                  <li><a href="#">Descarga de formularios</a></li>
+                  <li><a href="#">Preguntas frecuentes</a></li>
+                </ul>
+              </div>
+              
+              <div class="footer-section">
+                <h3>REDES SOCIALES</h3>
+                <ul>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">YouTube</a></li>
+                  <li><a href="#">Instagram</a></li>
+                </ul>
+              </div>
+            </div>
+        
+                        
+            <div class="copyright" style="width: 100%; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ccc;">
+             <p> © 2023 Gobierno Regional de Loreto  GRTC. Todos los derechos reservados.<p>
+            </div>
+          </div>
+        </footer>
+        </body>
+        </html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>web_grtc_loreto</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #003087 0%, #002366 100%);
+      padding: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .logo-img {
+      height: 120px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+    
+    .partner-logos {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    nav {
+      background: linear-gradient(to right, #e60000, #c50000);
+      padding: 10px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ESTILOS MEJORADOS PARA DROPDOWN */
+    .dropdown {
+      position: relative;
+      margin: 0 8px;
+    }
+  
+    .dropdown > a {
+      color: white;
+      padding: 12px 18px;
+      text-decoration: none;
+      display: inline-block;
+      background-color: transparent;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .dropdown:hover > a {
+      background-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+  
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 240px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      z-index: 1000;
+      border-radius: 8px;
+      overflow: hidden;
+      transform-origin: top center;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+  
+    .dropdown-content a {
+      color: #003087;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+  
+    .dropdown-content a:hover {
+      background-color: rgba(0, 48, 135, 0.05);
+      border-left: 3px solid #e60000;
+      padding-left: 20px;
+    }
+  
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ESTILOS MEJORADOS PARA BLOQUES CON EFECTO ZOOM */
+    .opciones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('https://i.postimg.cc/zGgt50s6/logo-portal-web.jpg') no-repeat center center;
+      background-size: cover;
+      perspective: 1000px;
+      gap: 20px;
+    }
+
+    .opcion {
+      background: linear-gradient(145deg, #e60000, #c50000);
+      color: white;
+      padding: 25px 20px;
+      width: 260px;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: scale(0.95);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border: none;
+    }
+
+    .opcion:hover {
+      transform: translateY(-10px) scale(1);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .opcion::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .opcion:hover::before {
+      left: 100%;
+    }
+
+    .opcion svg {
+      width: 40px;
+      height: 40px;
+      fill: white;
+      margin-bottom: 15px;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .opcion:hover svg {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .opcion h3 {
+      margin: 15px 0 10px;
+      transition: all 0.3s ease;
+      font-size: 1.2em;
+      position: relative;
+      font-weight: 600;
+    }
+
+    .opcion:hover h3 {
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .opcion p {
+      transition: all 0.3s ease;
+      opacity: 0.9;
+      font-size: 0.95em;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* SECCIÓN NOTICIAS MEJORADA */
+    .noticias {
+      background: #fff;
+      padding: 50px 20px;
+    }
+
+    .noticias-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .noticias h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #003087;
+      font-size: 2em;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .noticias h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, #003087, #e60000);
+      border-radius: 3px;
+    }
+
+    .noticia-lista {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .noticia {
+      background: white;
+      padding: 0;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .noticia:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .noticia-img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .noticia-content {
+      padding: 20px;
+    }
+
+    .noticia h4 {
+      margin: 0 0 10px;
+      color: #003087;
+      font-size: 1.3em;
+    }
+
+    .noticia p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .noticia-date {
+      display: block;
+      color: #e60000;
+      font-weight: 500;
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    /* FOOTER */
+    footer {
+      background: linear-gradient(135deg, #003087 0%, #002366 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      border-bottom: 2px solid #e60000;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section li {
+      margin: 10px 0;
+    }
+
+    .footer-section a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+        <!--Lopo de la GRTC_LORETO del emcabezado de la pagina web-->
+  <header>
+    <div class="header-container">
+      <img src="https://i.postimg.cc/Gh0rYctW/LOGO-WEB-2025.png" alt="GRTC Loreto" class="logo-img">
+      
+        <!--Logo del portal de transparencia-->
+
+      <div class="partner-logos">
+        <a href="https://www.transparencia.gob.pe/enlaces/pte_transparencia_enlaces.aspx?id_entidad=10152&id_tema=1&ver=" target="_blank">
+          <img src="https://i.postimg.cc/FFMjyNdd/logo-portal-pte.png" alt="Portal PTE" class="logo-img">
+        
+        </a>
+        <a href="https://www.gob.pe/" target="_blank">
+          <img src="https://i.postimg.cc/B6wC9FnM/logo-gobpe-blanco.png" alt="logo-gobpe-blanco" style="height: 50px; width: auto; border: 0;">
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <nav>
+    <div class="nav-container">
+      <div class="dropdown">
+      <a href="#">INICIO</a>
+      <div class="dropdown-content">
+      </div>
+      </div>  
+
+      
+       
+
+      <div class="dropdown">
+        <a href="#">LA INSTITUCIÓN</a>
+        <div class="dropdown-content">
+          <a href="#">Misión y visión</a>
+          <a href="#">Estructura orgánica</a>
+          <a href="#">Normativa interna</a>
+          <a href="#">Transparencia institucional</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#">DIRECCIONES EJECUTIVAS</a>
+        <div class="dropdown-content">
+          <a href="#">Dirección Ejecutiva de Comunicaciones</a>
+          <a href="#">Dirección Ejecutiva de Circulación Terrestre</a>
+          <a href="#">Dirección Ejecutiva de Transportes Acuático</a>
+          <li><a href="direccion_ejecutiva_de_circulacion_vial.html">Dirección Ejecutiva de Infraestructura Vial</a><li>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#">CONVOCATORIAS</a>
+        <div class="dropdown-content">
+          <a href="#">SUB DIRECCIÓN DE LABORATORIO DE SUELOS.</a>
+          <a href="#">DIRECCIÓN EJECUTIVA DE TRANSPORTES ACUÁTICO</a>
+          <a href="#">DIRECCIÓN EJECUTIVA DE CIRCULACIÓN TERRESTRE</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#">INSTRUMENTOS DE GESTIÓN</a>
+        <div class="dropdown-content">
+          <a href="#">PEI 2023-2026</a>
+          <a href="#">TUPA Regional</a>
+          <a href="#">Convenios con el MTC</a>
+        </div>
+      </div>
+
+      
+      </div>
+    </div>
+  </nav>
+
+  <div class="opciones">
+    <div class="opcion">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 12c2.7 0 4.5-2.1 4.5-4.5S14.7 3 12 3 7.5 5.1 7.5 7.5 9.3 12 12 12zm0 1.5c-3 0-9 1.5-9 4.5V21h18v-3c0-3-6-4.5-9-4.5z"/>
+      </svg>
+      <h3>ESCUELA DE CONDUCTORES</h3>
+      <p>Conoce aquí sobre la escuela de conductores para obtener tu licencia de conducir.</p>
+    </div>
+
+    <div class="opcion">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="50" width="44" height="4" fill="#444"/>
+        <rect x="12" y="48" width="40" height="2" fill="#555"/>
+        <rect x="14" y="46" width="32" height="2" fill="#666"/>
+        <rect x="16" y="44" width="24" height="2" fill="#777"/>
+        <rect x="12" y="28" width="40" height="22" fill="#9bbcd1" stroke="#555" stroke-width="1"/>
+        <rect x="12" y="28" width="40" height="22" fill="none" stroke="#444" stroke-width="0.5"/>
+        <rect x="12" y="30" width="40" height="2" fill="#777"/>
+        <rect x="16" y="28" width="2" height="22" fill="#fff" stroke="#aaa" stroke-width="1"/>
+        <rect x="22" y="28" width="2" height="22" fill="#fff" stroke="#aaa" stroke-width="1"/>
+        <rect x="28" y="28" width="2" height="22" fill="#fff" stroke="#aaa" stroke-width="1"/>
+        <rect x="34" y="28" width="2" height="22" fill="#fff" stroke="#aaa" stroke-width="1"/>
+        <rect x="40" y="28" width="2" height="22" fill="#fff" stroke="#aaa" stroke-width="1"/>
+        <rect x="46" y="28" width="2" height="22" fill="#fff" stroke="#aaa" stroke-width="1"/>
+        <polygon points="12,28 32,14 52,28" fill="#b00"/>
+        <polygon points="12,28 32,16 52,28" fill="none" stroke="#444" stroke-width="1.5"/>
+        <rect x="30" y="38" width="4" height="12" fill="#333" stroke="#555" stroke-width="1"/>
+        <rect x="30" y="40" width="4" height="6" fill="#444" stroke="#555" stroke-width="1"/>
+        <rect x="14" y="34" width="4" height="6" fill="#fff" stroke="#999" stroke-width="0.5"/>
+        <rect x="46" y="34" width="4" height="6" fill="#fff" stroke="#999" stroke-width="0.5"/>
+        <g transform="translate(28,19) scale(0.6)">
+          <ellipse rx="4" ry="6" cx="4" cy="6" fill="#fff" stroke="#00662F" stroke-width="1"/>
+          <rect x="2" y="3" width="2" height="6" fill="#3CA6DD"/>
+          <rect x="4" y="3" width="2" height="3" fill="#fff" stroke="#999" stroke-width="0.3"/>
+          <rect x="4" y="6" width="2" height="3" fill="#D91023"/>
+          <circle cx="5" cy="7.5" r="0.5" fill="gold"/>
+        </g>
+        <rect x="31.5" y="6" width="1" height="10" fill="#000"/>
+        <g transform="translate(32.5,6)">
+          <rect x="0" y="0" width="3" height="5" fill="#D91023"/>
+          <rect x="3" y="0" width="3" height="5" fill="#ffffff"/>
+          <rect x="6" y="0" width="3" height="5" fill="#D91023"/>
+        </g>
+      </svg>
+      <h3>INTEGRIDAD INSTITUCIONAL</h3>
+      <p>Conoce aquí sobre las funciones de integridad institucional.</p>
+    </div>
+
+    <div class="opcion">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 17h-2v-6H7v-2h4V7h2v4h4v2h-4v6z"/>
+      </svg>
+      <h3>CENTROS MÉDICOS</h3>
+      <p>Consulta aquí los centros médicos autorizados para obtener tu licencia.</p>
+    </div>
+    
+    <div class="opcion">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8l6 6v10a2 2 0 0 1-2 2z" />
+        <path d="M18 2l3 3-9 9-3-3 9-9z" />
+        <path d="M12 9l3 3" />
+      </svg>
+      <h3>TRÁMITES Y REQUISITOS</h3>
+      <p>Infórmate sobre cómo realizar los trámites para licencias de conducir.</p>
+    </div>
+  </div>
+
+  <section class="noticias">
+    <div class="noticias-container">
+      <h2>ÚLTIMAS NOTICIAS</h2>
+      
+      <div class="noticia-lista">
+        <div class="noticia">
+          <!--<img src="" alt="Noticia 1" class="noticia-img">-->
+          <img 
+    src="https://i.postimg.cc/1zCX9jvP/foto-principal.jpg" 
+    alt="foto-principal" 
+    style="max-width: 100%; height: auto;"
+>
+          <div class="noticia-content">
+            <h4>GRTC_LORETO REALIZÓ SEMINARIO DE CAPACITACIÓN A CONDUCTORES INTERPROVINCIALES DE LORETO</h4>
+            
+            <div class="contenido">
+              <p class="destacado">Con el objetivo de promover una conducción más segura y responsable, la Gerencia Regional de Transportes y Comunicaciones de Loreto (GRTC) organizó un seminario dirigido a los conductores que a diario recorren las rutas interprovinciales llevando pasajeros y carga.</p>
+              
+              <p>Más de 200 choferes participaron activamente en esta jornada formativa, realizada en la Maloca Principal de la GRTC, donde no solo aprendieron, sino también reafirmaron su compromiso con la seguridad vial.</p>
+              
+              <p>Durante el evento, expertos de distintas instituciones compartieron sus conocimientos. El fiscal Efraín Yanarico habló sobre los peligros legales de conducir bajo los efectos del alcohol, mientras que la Policía Nacional abordó las infracciones más frecuentes en la carretera Iquitos–Nauta. También se brindaron nociones esenciales de primeros auxilios, gracias a la Compañía de Bomberos, y se actualizó a los asistentes sobre las normas de tránsito y transporte terrestre.</p>
+              
+              <p>La GRTC destacó que su labor va más allá de la fiscalización: buscan prevenir accidentes, capacitar y sensibilizar a quienes están al volante. Los conductores, visiblemente agradecidos, recibieron certificados que respaldan su participación, y aplaudieron el esfuerzo por brindarles herramientas para mejorar su desempeño diario.</p>
+          </div>
+
+            <span class="noticia-date">25 de Abril, 2025</span>
+          </div>
+        </div>
+        
+
+
+        <div class="noticia">
+          <!--<img src="https://i.postimg.cc/8z9JZJQr/noticia2.jpg" alt="Noticia 2" class="noticia-img">-->
+
+          <a href="https://postimg.cc/d7bz4yGs" target="_blank">
+            <img 
+                src="https://i.postimg.cc/50yb950C/bacheo.jpg" 
+                alt="bacheo" 
+                style="max-width: 100%; height: auto; display: block; border: 0;"
+            >
+        </a>
+
+
+          <div class="noticia-content">
+            <h4>GERENCIA REGIONAL DE TRANSPORTES Y COMUNICACIONES INICIA TRABAJOS DE BACHEO EN LA CARRETERA IQUITOS-NAUTA</h4>
+            <p>La Gerencia Regional de Transportes y Comunicaciones se reunió con los trabajadores encargados del bacheo para coordinar de manera más eficiente los trabajos de mejora en esta importante vía. El objetivo: asegurar que se usen bien los materiales y que los equipos trabajen de forma organizada para avanzar rápido y con buenos resultados. 💪.</p>
+            <p>Las labores se concentrarán en los kilómetros 19, 20 y del 70 al 90, tramos que necesitan atención urgente. Para ello, se han formado grupos que ya están listos para actuar con compromiso y eficiencia.</p>
+            <p>Con estos trabajos, no solo se busca tapar huecos, sino hacer que el camino sea más seguro y cómodo para todos los transportistas y pasajeros que transitan a diario por la carretera. 🚛🚌</p>
+            <p>Porque cuando trabajamos en equipo, avanzamos más lejos GRTC_loreto</p>
+            <span class="noticia-date">28 de Abril, 2025</span>
+          </div>
+        </div>
+        
+
+
+        <div class="noticia">
+          <!--<img src="https://i.postimg.cc/8z9JZJQr/noticia3.jpg" alt="Noticia 3" class="noticia-img">-->
+          <a href="https://postimg.cc/94wGc4Kq" target="_blank" style="display: inline-block; max-width: 100%;">
+            <img
+                src="https://i.postimg.cc/XvQxcdgx/providencia.jpg"
+                alt="providencia"
+                style="width: 100%; height: auto; border: 0; display: block;"
+            >
+        </a>
+
+
+          <div class="noticia-content">
+            <h4>GERENCIA REGIONAL DE TRANSPORTES Y COMUNICACIONES AVANZA PERFIL PARA CONECTIVIDAD EN EL POBLADO INDÍGENA PROVIDENCIA DEL RÍO CORRIENTES</h4>
+            <p>La Gerencia Regional de Transportes y Comunicaciones de Loreto recibió la visita del Apu José Manuel Peraza Sandy y del profesor Eulogio Acho, representantes de la comunidad nativa Achuar de Providencia del río Corrientes, ubicada en el distrito de Trompeteros. Durante el encuentro, manifestaron el deseo de contar con el servicio de telefonía móvil para su comunidad, que alberga a aproximadamente 700 habitantes.</p>
+            <p>En respuesta, la Gerencia Regional, con el respaldo del equipo técnico del área de comunicaciones, indicó que, si bien este tipo de servicios corresponde a las empresas privadas de telefonía móvil, en función de sus estudios de mercado, el Gobierno Regional de Loreto puede impulsar la instalación de una antena como parte de un esfuerzo conjunto. En ese sentido, se está trabajando en la elaboración del perfil técnico y el expediente correspondiente, los cuales se prevé culminar hacia octubre del presente año. Esto permitirá facilitar el diálogo y la concertación con las empresas operadoras para lograr la cobertura del servicio en la comunidad de Providencia.</p>
+            <span class="noticia-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <div class="header-container">
+        
+          
+          <footer>
+            <div class="footer-container">
+              <div class="footer-section">
+                <div class="header-container">
+                
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="align-self: center; margin-right: 1cm;"> <!-- Cambiado a margin-right -->
+                      <a href='https://postimg.cc/k60CLH8b' target='_blank'>
+                        <img src='https://i.postimg.cc/prTd5bLq/logos-nuevo-2.png' border='0' alt='logos-nuevo-2' style="max-height: 130px;"/>
+                      </a>
+                    </div>
+        
+        
+                <div class="footer-section">
+                <h3>CONTACTO</h3>
+                <ul>
+                  <li><a href="tel:065260990">Teléfono: 065-260990</a></li>
+                  <li><a href="mailto:informes@grtcloreto.gob.pe">Email: informes@grtcloreto.gob.pe</a></li>
+                  <li>Dirección: Av JoséAbelardo Quiñones KM 3.5San Juan</li>
+                  <li>Horario: L-V 7:00am - 3:00pm</li>
+                </ul>
+              </div>
+              
+              <div class="footer-section">
+                <h3>ENLACES RÁPIDOS</h3>
+                <ul>
+                  <li><a href="#">Trámites en línea</a></li>
+                  <li><a href="#">Consultas de multas</a></li>
+                  <li><a href="#">Descarga de formularios</a></li>
+                  <li><a href="#">Preguntas frecuentes</a></li>
+                </ul>
+              </div>
+              
+              <div class="footer-section">
+                <h3>REDES SOCIALES</h3>
+                <ul>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">YouTube</a></li>
+                  <li><a href="#">Instagram</a></li>
+                </ul>
+              </div>
+            </div>
+        
+                        
+            <div class="copyright" style="width: 100%; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ccc;">
+             <p> © 2023 Gobierno Regional de Loreto  GRTC. Todos los derechos reservados.<p>
+            </div>
+          </div>
+        </footer>
+        </body>
+        </html>
