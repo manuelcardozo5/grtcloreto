@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>sub_dirección_de_estudios_y_supervicion</title>
+  <style>
+    /* Reset y estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+      color: #333;
+    }
+    
+    /* Header mejorado */
+    header {
+      background: linear-gradient(135deg, #003087 0%, #002366 100%);
+      padding: 10px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      position: relative;
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px;
+      position: relative;
+    }
+    
+    .logo-img {
+      height: 80px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+    
+    .header-title {
+      font-family: 'Times New Roman', serif;
+      font-size: 1.8rem;
+      font-style: italic;
+      color: #faf4f4;
+      text-align: center;
+      margin: 0 10px;
+      line-height: 1.3;
+      flex-grow: 1;
+    }
+    
+    .tractor-img {
+      height: 150px;
+      width: auto;
+    }
+    
+    .partner-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .partner-logos img {
+      height: 40px;
+      width: auto;
+    }
+    
+    /* MENÚ DE NAVEGACIÓN MEJORADO - AHORA RESPONSIVO */
+    nav {
+      background: linear-gradient(to right, #e60000 50%, #c50000 100%);
+      padding: 0;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
+    }
+    
+    /* Menú hamburguesa para móviles */
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      padding: 15px;
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      z-index: 1001;
+    }
+    
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+    
+    /* Estilos para desktop */
+    .dropdown {
+      position: relative;
+      margin: 0;
+      flex-grow: 1;
+      text-align: center;
+    }
+    
+    .dropdown > a {
+      color: white;
+      padding: 15px 10px;
+      text-decoration: none;
+      display: block;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    
+    .dropdown:hover > a {
+      background-color: rgba(255,255,255,0.2);
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      z-index: 1000;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .dropdown-content a {
+      color: #003087;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+    
+    .dropdown-content a:hover {
+      background-color: rgba(0, 48, 135, 0.05);
+      border-left: 3px solid #e60000;
+      padding-left: 20px;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Sección principal */
+    .main-content {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    
+    .banner-img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .description {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    
+    .description h2 {
+      color: #003087;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+    
+    .description p {
+      margin-bottom: 15px;
+      line-height: 1.7;
+    }
+    
+    /* Noticias */
+    .news-section {
+      background-color: #fff;
+      padding: 20px 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .news-section h2 {
+      color: #003087;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: center;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e60000;
+    }
+    
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .news-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    
+    .news-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .news-content {
+      padding: 15px;
+    }
+    
+    .news-content h3 {
+      color: #003087;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .news-content p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+      color: #555;
+    }
+    
+    .news-date {
+      color: #e60000;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: block;
+      font-weight: 500;
+    }
+    
+    /* Footer mejorado */
+    footer {
+      background: linear-gradient(135deg, #003087 0%, #002366 100%);
+      color: white;
+      padding: 30px 15px;
+      margin-top: 30px;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .footer-section {
+      margin-bottom: 20px;
+    }
+    
+    .footer-section h3 {
+      border-bottom: 2px solid #e60000;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section li {
+      margin: 10px 0;
+    }
+    
+    .footer-section a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    
+    .copyright {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    
+    /* Estilos responsivos - MENÚ PARA MÓVIL */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .logo-img {
+        margin-bottom: 10px;
+        height: 70px;
+      }
+      
+      .header-title {
+        font-size: 1.4rem;
+        margin: 10px 0;
+      }
+      
+      .tractor-img {
+        height: 120px;
+        margin: 10px 0;
+      }
+      
+      /* Estilos del menú hamburguesa */
+      .menu-toggle {
+        display: block;
+      }
+      
+      .nav-container {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: linear-gradient(to bottom, #e60000, #c50000);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+      }
+      
+      .nav-container.active {
+        display: flex;
+      }
+      
+      .dropdown {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      
+      .dropdown > a {
+        padding: 15px 20px;
+        white-space: normal;
+      }
+      
+      .dropdown-content {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        animation: none;
+        display: none;
+        background-color: rgba(0,0,0,0.1);
+      }
+      
+      .dropdown-content.show {
+        display: block;
+      }
+      
+      .dropdown-content a {
+        color: white;
+        padding-left: 30px;
+        border-left: none;
+      }
+      
+      .dropdown-content a:hover {
+        background-color: rgba(255,255,255,0.1);
+      }
+      
+      .description h2 {
+        font-size: 1.5rem;
+      }
+      
+      .news-section h2 {
+        font-size: 1.5rem;
+      }
+      
+      /* Animación del botón hamburguesa */
+      .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .header-title {
+        font-size: 1.3rem;
+      }
+      
+      .partner-logos img {
+        height: 35px;
+      }
+      
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .description h2 {
+        font-size: 1.3rem;
+      }
+      
+      .news-section h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <header>
+    <div class="header-container">
+      <img src="https://i.postimg.cc/Gh0rYctW/LOGO-WEB-2025.png" alt="GRTC Loreto" class="logo-img">
+      
+      <div class="header-title">
+        Sub Dirección de Estudios<br>y Supervición
+      </div>
+      
+      <img src="https://i.postimg.cc/4xL9trR3/pngegg-1.png" alt="Tractor" class="tractor-img">
+      <!--
+      <button class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>  -->
+
+      <button class="menu-toggle" id="mobile-menu">
+      <span class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+      </span>
+      <span class="menu-text">Menú</span>
+      </button>
+      
+      <div class="partner-logos">
+        <a href="https://www.transparencia.gob.pe/enlaces/pte_transparencia_enlaces.aspx?id_entidad=18822" target="_blank">
+          <img src="https://i.postimg.cc/FFMjyNdd/logo-portal-pte.png" alt="Portal PTE">
+        </a>
+        
+        <a href="https://www.gob.pe/" target="_blank"> 
+          <img src="https://i.postimg.cc/B6wC9FnM/logo-gobpe-blanco.png" alt="Gob.pe">
+        </a> 
+      </div>
+    </div>
+  </header>
+
+  <!-- Menú de navegación - AHORA CON HAMBURGUESA PARA MÓVILES -->
+  <nav>    
+    <div class="nav-container" id="nav-container">
+      <div class="dropdown">
+        <a href="index.html">INICIO</a>
+      </div>
+      
+      <div class="dropdown">
+        <a href="sub_direccion_de_laboratorio_de_suelos.html">SUB DIRECCIÓN <br>DE LABORATORIO DE SUELOS</a>
+      </div>
+
+      <div class="dropdown">
+        <a href="sub_direccion_de_equipo_mecanico.html">SUB DIRECCIÓN DE EQUIPO MECANICO</a>
+      </div>
+      
+      <div class="dropdown">
+        <a href="direccion_ejecutiva_de_infraestructura_vial.html">DIRECCIÓN EJECUTIVA <br>DE INFRAESTRUCTURA VIAL</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+    <!-- Contenido principal -->
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Imágenes en Banner</title>
+  <style>
+    .banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Imagen mecanica-5 con estilo de banner -->
+ <!-- <img src="https://i.postimg.cc/Bb378j9q/mecanica-5.jpg" alt="mecanica-5" class="banner-img"> -->
+
+  <!-- Imagen deiv-3 con el mismo estilo -->
+  <img src="https://i.postimg.cc/kXPFVWNp/deiv-3.jpg" alt="Dirección Ejecutiva de Infraestructura Vial" class="banner-img">
+
+</body>
+</html>
+    
+    <div class="description">
+      <h2>SUB DIRECCIÓN DE ESTUDIOS Y SUPERVISIÓN</h2>
+     <p>La Sub dirección de Estudios y Supervisión, es una dependencia funcional de la Dirección Ejecutiva de Infraestructura Vial de la Gerencia Regional de Transportes y Comunicaciones del Gobierno Regional de Loreto. </p>
+     <p>Su responsabilidad principal es coordinar, revisar y supervisar la elaboración de expedientes técnicos, estudios definitivos, perfiles de proyectos y la ejecución de actividades relacionadas con el control y seguimiento técnico de obras viales.</p>
+     <p>Actúa como garante de la calidad técnica y del cumplimiento normativo en las distintas etapas del ciclo de inversión pública en infraestructura de transporte terrestre.</p>
+     <h2>🎯 Misión:</h2>
+     <p>Contribuir al desarrollo sostenible de la infraestructura vial regional mediante la formulación, revisión y supervisión de estudios técnicos confiables, asegurando que los proyectos viales se ejecuten bajo estándares de calidad, eficiencia y transparencia, en beneficio de la población de Loreto.</p>
+     <h2>🌄 Visión:</h2>
+     <p>Ser una sub dirección técnica reconocida por su excelencia en la gestión y supervisión de estudios viales, promoviendo una infraestructura de transporte segura, eficiente e integrada al desarrollo regional sostenible del departamento de Loreto.</p>
+    </div>
+    
+    <!-- Sección de noticias -->
+    <div class="news-section">
+      <h2>"Supervisamos y Garantizamos la Calidad de la Infraestructura Vial para el Desarrollo de la Region Loreto"</h2>
+      
+      <div class="news-grid">
+        <!-- Noticia 1 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/T2LkJB2P/deiv-5.jpg" alt="deiv-5" class="news-img">
+          <div class="news-content">
+            <h3>"MEJORAMOS LAS RUTAS DEPARTAMENTALES DE NUESTRA REGIÓN GRACIAS AL CONVENIO CON PROVÍAS DESCENTRALIZADO"</h3>
+            <p>La mejora de las rutas en la región se ejecuta mediante un trabajo técnico articulado entre la Sub dirección de Estudios y Supervisión</p>
+            <p>en el marco de un convenio de cooperación interinstitucional. Este esfuerzo conjunto permite revisar, evaluar y supervisar técnicamente los estudios, expedientes y ejecución de obras viales, asegurando el cumplimiento normativo, la calidad de los proyectos y su alineamiento con los objetivos del desarrollo regional</p>
+            <span class="news-date">25 de Abril, 2025</span>
+          </div>
+        </div>
+        
+        <!-- Noticia 2 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/d1T8GPRP/deiv-2.jpg" alt="deiv-2" class="news-img">
+          <div class="news-content">
+            <h3>"Orientación Técnica en Campo para el Desarrollo Vial Regional"</h3>
+            <p>Esta sub Dirección brinda la orientación al personal de campo ya que constituye un proceso técnico fundamental que asegura la correcta ejecución de los proyectos viales desde su fase inicial hasta la culminación de las obras.</p>
+            <span class="news-date">28 de Abril, 2025</span>
+          </div>
+        </div>
+        
+        <!-- Noticia 3 -->
+         
+        <div class="news-card">
+          <img src="https://i.postimg.cc/cCzF6J1m/supervision-1.jpg" alt="supervision-1" class="news-img">
+          <div class="news-content">
+            <h3>Visita Técnica a la Ruta Departamental LO-103: Compromiso con la Infraestructura Vial Regiona</h3>
+             <p>La inspección técnica realizada por el Gerente Regional de Transportes y Comunicaciones de Loreto, en coordinación con la Dirección Ejecutiva de Infraestructura Vial y la Subdirección de Estudios y Supervisión, tiene como objetivo verificar el avance del proyecto de mejoramiento de la Ruta Departamental Pavimentada LO-103, financiado por Provías Descentralizado. </p>
+             <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+
+        <!-- Noticia 4 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/HkbkR9wm/deiv-14.jpg" alt="Obras de la DEIV en carretera Iquitos–Nauta" class="news-img">
+           <div class="news-content">
+            <h3>"SUB DIRECCION DE ESTUDIOS Y SUPERVICION "</h3>
+             <p>La Dirección Ejecutiva de Infraestructura Vial, mediante su Sub dirección de Estudios y Supervisión, inspecciona el mantenimiento de la ruta pavimentada LO-103, que conecta con 18 vías vecinales. Gracias al financiamiento de Provías Descentralizado, se optimizan los accesos viales, se reduce el tiempo y costo del transporte, y se fortalece el desarrollo económico y la integración territorial de la región.</p>
+            <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+
+        <!-- Noticia 5 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/fLDdjQgh/supervision-3.jpg" alt="supervision-3" class="news-img">
+           <div class="news-content">
+            <h3>"SUB DIRECCIÓN DE LABORATORIO DE SUELOS"</h3>
+            <p>Forma parte de la estructura técnica de la dirección ejecutiva de infraestructura vial, que tiene a su cargo la supervisión, administración y articulación de sus funciones en el marco del desarrollo de infraestructura vial en la región, es el órgano técnico especializado de la dirección ejecutiva de infraestructura vial, responsable de realizar ensayos y estudios de calidad de materiales para obras viales. su función es garantizar resultados confiables y normados que respalden el diseño, construcción y mantenimiento de la infraestructura de transporte en la región loreto.</p>
+            <p>El laboratorio de suelos y asfalto es pionera en la región, contamos con equipos con una antigüedad no mayor de 2 años; y estamos en la capacidad de realizar cualquier tipo de ensayo y en particular ensayos para la caractirazión del asfalto y diseño de mezclas asfálticas, ensayos que no se realiza en otro laboratorio de la ciudad.</p>
+            <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+
+        <!-- Noticia 6 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/Z5xGrXbQ/supervision-2.jpg" alt="supervision-2" class="news-img">
+           <div class="news-content">
+            <h3>"📌DIRECCIÓN EJECUTIVA DE INFRAESTRUCTURA VIAL, A TRAVÉS DE LA SUBDIRECCIÓN DE EQUIPO MECÁNICO, SUPERVISA EL USO RESPONSABLE DE LAS MAQUINARIA, ASEGURANDO SU OPERATIVIDAD EN CADA PROYECTO VIAL."</h3>
+            <p>La Sub dirección de Equipo Mecánico es un órgano técnico-operativo dependiente de la Dirección Ejecutiva de Infraestructura Vial, encargado de gestionar, supervisar y mantener en óptimas condiciones la maquinaria pesada utilizada en los proyectos de infraestructura vial del Gobierno Regional de Loreto. Su labor garantiza la operatividad y disponibilidad de los equipos, contribuyendo directamente a la ejecución eficiente de obras que mejoran la conectividad y el desarrollo territorial de la región.</p>
+            <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+
+        <!-- Noticia 7 -->
+        <div class="news-card">
+          <img src='https://i.postimg.cc/jdGySSJM/supervicion-4.jpg' alt='supervicion-4' class='news-img'>
+           <div class="news-content">
+            <h3>"📌DIRECCIÓN EJECUTIVA DE INFRAESTRUCTURA VIAL, A TRAVÉS DE LA SUBDIRECCIÓN DE EQUIPO MECÁNICO, SUPERVISA EL USO RESPONSABLE DE LAS MAQUINARIA, ASEGURANDO SU OPERATIVIDAD EN CADA PROYECTO VIAL."</h3>
+            <p>La Sub dirección de Equipo Mecánico es un órgano técnico-operativo dependiente de la Dirección Ejecutiva de Infraestructura Vial, encargado de gestionar, supervisar y mantener en óptimas condiciones la maquinaria pesada utilizada en los proyectos de infraestructura vial del Gobierno Regional de Loreto. Su labor garantiza la operatividad y disponibilidad de los equipos, contribuyendo directamente a la ejecución eficiente de obras que mejoran la conectividad y el desarrollo territorial de la región.</p>
+            <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+
+        <!-- Noticia 8 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/sxK016kh/deiv-16.jpg" alt="deiv-16" class="news-img">
+           <div class="news-content">
+            <h3>"Dirección Ejecutiva de Infraestructura Vial de la Gerencia Regional de Transporte y Comunicaciones de acuerdo a su competencias impartidas tiene como función velar y mantener operativa la LO -103."</h3>
+            <p>La Ruta departamental Pavimentada LO -103 cuenta con 18 empalmes de rutas vecinales, donde el financiamientos otorgado por Provias Descentralizado ayuda al mejoramiento de los accesos de estas vías de penetración., Estos trabajos reducen el tiempo y los costos de transporte en el comercio de los productos con los demás Sectores del distrito, de la provincia y de la región.</p>
+            <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <img src="https://i.postimg.cc/prTd5bLq/logos-nuevo-2.png" alt="Logos institucionales" style="max-height: 130px; width: auto;">
+      </div>
+      
+      <div class="footer-section">
+        <h3>CONTACTO</h3>
+        <ul>
+          <li><a href="tel:065260990">Teléfono: 065-260990</a></li>
+          <li><a href="mailto:informes@grtcloreto.gob.pe">Email: informes@grtcloreto.gob.pe</a></li>
+          <li>Dirección: Av José Abelardo Quiñones KM 3.5 San Juan</li>
+          <li>Horario: L-V 7:00am - 3:00pm</li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>ENLACES RÁPIDOS</h3>
+        <ul>
+          <li><a href="#">Trámites en línea</a></li>
+          <li><a href="#">Consultas de multas</a></li>
+          <li><a href="#">Descarga de formularios</a></li>
+          <li><a href="#">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>REDES SOCIALES</h3>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>© 2023 Gobierno Regional de Loreto GRTC. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Menú hamburguesa para móviles
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('mobile-menu');
+      const navContainer = document.getElementById('nav-container');
+      const dropdowns = document.querySelectorAll('.dropdown');
+      
+      // Mostrar/ocultar menú al hacer clic en el ícono de hamburguesa
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navContainer.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+      });
+      
+      // Cerrar el menú al seleccionar una opción (solo en móviles)
+      if (window.innerWidth <= 768) {
+        dropdowns.forEach(function(dropdown) {
+          const link = dropdown.querySelector('a');
+          
+          link.addEventListener('click', function(e) {
+            // Si tiene submenú, no cerrar el menú principal
+            if (dropdown.querySelector('.dropdown-content')) {
+              e.preventDefault();
+              const submenu = dropdown.querySelector('.dropdown-content');
+              submenu.classList.toggle('show');
+            } else {
+              // Cerrar el menú después de seleccionar una opción
+              navContainer.classList.remove('active');
+              menuToggle.classList.remove('active');
+            }
+          });
+        });
+      }
+      
+      // Cerrar el menú al hacer clic fuera de él
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest('.dropdown') && !event.target.closest('.menu-toggle')) {
+          const dropdownContents = document.querySelectorAll('.dropdown-content');
+          dropdownContents.forEach(function(content) {
+            content.classList.remove('show');
+          });
+          
+          if (window.innerWidth <= 768) {
+            navContainer.classList.remove('active');
+            menuToggle.classList.remove('active');
+          }
+        }
+      });
+      
+      // Asegurar que el menú se cierre al cambiar de tamaño de pantalla
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+          navContainer.classList.remove('active');
+          menuToggle.classList.remove('active');
+          const dropdownContents = document.querySelectorAll('.dropdown-content');
+          dropdownContents.forEach(function(content) {
+            content.classList.remove('show');
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
