@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>direccion_ejecutiva_de_infraestructura_vial</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Estilos generales */
+    :root {
+      --primary: #003087;
+      --secondary: #e60000;
+      --accent: #ffcc00;
+      --light: #f5f5f5;
+      --dark: #222;
+      --text: #333;
+      --text-light: #777;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--light);
+      overflow-x: hidden;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--secondary);
+      color: white;
+      border-radius: 5px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+    
+    .btn:hover {
+      background: #c50000;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, #002366 100%);
+      padding: 15px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1000;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .logo-img {
+      height: 60px;
+      transition: transform 0.3s;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo-text {
+      color: white;
+    }
+    
+    .logo-text h1 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+    
+    .logo-text p {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    
+    .partner-logos {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    
+    .partner-logo {
+      height: 40px;
+      filter: brightness(0) invert(1);
+      opacity: 0.8;
+      transition: all 0.3s;
+    }
+    
+    .partner-logo:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .tractor-img {
+      width: 80px;
+      height: auto;
+      display: none; /* Ocultar en móvil por defecto */
+    }
+    
+    /* Menú de navegación */
+    nav {
+      background: linear-gradient(to right, var(--secondary), #c50000);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    
+    /* Menú móvil */
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 10px 15px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1001;
+    }
+    
+    .menu-icon {
+      display: block;
+      width: 25px;
+      height: 20px;
+      position: relative;
+    }
+    
+    .menu-icon span {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 3px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+    }
+    
+    .menu-icon span:nth-child(1) {
+      top: 0px;
+    }
+    
+    .menu-icon span:nth-child(2), .menu-icon span:nth-child(3) {
+      top: 8px;
+    }
+    
+    .menu-icon span:nth-child(4) {
+      top: 16px;
+    }
+    
+    .menu-toggle.active .menu-icon span:nth-child(1) {
+      top: 8px;
+      width: 0%;
+      left: 50%;
+    }
+    
+    .menu-toggle.active .menu-icon span:nth-child(2) {
+      transform: rotate(45deg);
+    }
+    
+    .menu-toggle.active .menu-icon span:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+    
+    .menu-toggle.active .menu-icon span:nth-child(4) {
+      top: 8px;
+      width: 0%;
+      left: 50%;
+    }
+    
+    .menu-text {
+      display: inline-block;
+      margin-left: 5px;
+      font-size: 0.9rem;
+    }
+    
+    /* Opciones del menú */
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      flex-direction: column;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .nav-item {
+      position: relative;
+      width: 100%;
+    }
+    
+    .nav-link {
+      color: white;
+      padding: 12px 20px;
+      display: block;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-align: left;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+    
+    .nav-link:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('https://i.postimg.cc/zGgt50s6/logo-portal-web.jpg') center/cover no-repeat;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      padding: 40px 15px;
+    }
+    
+    .hero-content {
+      max-width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+    }
+    
+    .hero h1 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    
+    .hero p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    
+    /* Servicios */
+    .services {
+      padding: 40px 0;
+      background: white;
+    }
+    
+    .services p, .services h2, .services h3 {
+      padding: 0 10px;
+      margin-bottom: 15px;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      text-align: center;
+      padding: 20px 15px;
+      margin: 0 10px;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .service-icon {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+    
+    .service-card h3 {
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    
+    /* Noticias */
+    .news {
+      padding: 40px 0;
+      background: #f9f9f9;
+    }
+    
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .news-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      margin: 0 10px;
+    }
+    
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .news-img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .news-content {
+      padding: 15px;
+    }
+    
+    .news-date {
+      display: block;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+    }
+    
+    .news-card h3 {
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    /* Banner */
+    .banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* Videos */
+    .video-section {
+      padding: 40px 0;
+      background: white;
+    }
+    
+    .video-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-top: 20px;
+      padding: 0 10px;
+    }
+    
+    .video-wrapper {
+      width: 100%;
+    }
+    
+    .video-wrapper iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 8px;
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary) 0%, #002366 100%);
+      color: white;
+      padding: 40px 0 20px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+    
+    .footer-col {
+      padding: 0 15px;
+    }
+    
+    .footer-col h3 {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+    
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--secondary);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+    
+    .footer-links a {
+      color: #ddd;
+      transition: all 0.3s;
+      display: inline-block;
+      padding: 3px 0;
+      font-size: 0.9rem;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 35px;
+      height: 35px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #aaa;
+      font-size: 0.8rem;
+    }
+    
+    /* Estilos para imágenes especiales */
+    .contenedor-imagen-lab {
+      margin: 15px auto;
+      text-align: center;
+      padding: 10px;
+    }
+    
+    .enlace-imagen-lab {
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    
+    .enlace-imagen-lab:hover {
+      opacity: 0.9;
+    }
+    
+    .imagen-lab {
+      width: 95%;
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #f0f0f0;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .imagen-lab:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    
+    /* Media Queries para tablets */
+    @media (min-width: 576px) {
+      .logo-text h1 {
+        font-size: 1.3rem;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero-content {
+        max-width: 80%;
+      }
+      
+      .services-grid, .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .tractor-img {
+        display: block;
+        width: 100px;
+      }
+    }
+    
+    /* Media Queries para pantallas medianas */
+    @media (min-width: 768px) {
+      .menu-toggle {
+        display: none;
+      }
+      
+      .nav-container {
+        position: static;
+        max-height: none;
+        overflow: visible;
+      }
+      
+      .nav-menu {
+        flex-direction: row;
+        justify-content: center;
+      }
+      
+      .nav-item {
+        width: auto;
+        border-bottom: none;
+      }
+      
+      .nav-link {
+        text-align: center;
+        padding: 15px 20px;
+      }
+      
+      .hero {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 400px;
+      }
+      
+      .hero-content {
+        flex: 1 1 45%;
+        max-width: 45%;
+        margin: 10px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .tractor-img {
+        width: 120px;
+      }
+    }
+    
+    /* Media Queries para pantallas grandes */
+    @media (min-width: 992px) {
+      .logo-text h1 {
+        font-size: 1.5rem;
+      }
+      
+      .hero {
+        min-height: 450px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .services-grid, .news-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .video-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    /* Media Queries para pantallas muy grandes */
+    @media (min-width: 1200px) {
+      .hero {
+        min-height: 500px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .video-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+        @media (max-width: 768px) {
+  .nav-container {
+    display: none;
+    flex-direction: column;
+  }
+
+  .nav-container.active {
+    display: flex;
+  }
+}
+
+
+
+
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <img src="https://i.postimg.cc/Gh0rYctW/LOGO-WEB-2025.png" alt="GRTC Loreto" class="logo-img">
+        <div class="logo-text">
+          <h1>GRTC-DEIV</h1>
+          <p>DIRECCIÓN EJECUTIVA DE INFRAESTRUCTURA VIAL</p>
+        </div>
+      </div>
+
+      <img src="https://i.postimg.cc/4xL9trR3/pngegg-1.png" alt="Tractor" class="tractor-img">
+      
+      <div class="partner-logos">
+        <a href="https://www.transparencia.gob.pe/" target="_blank">
+          <img src="https://i.postimg.cc/FFMjyNdd/logo-portal-pte.png" alt="Portal de Transparencia" class="partner-logo">
+        </a>
+        <a href="https://www.gob.pe" target="_blank">
+          <img src="https://i.postimg.cc/B6wC9FnM/logo-gobpe-blanco.png" alt="Gobierno del Perú" class="partner-logo">
+        </a>
+      </div>
+
+      <!-- Botón del menú móvil -->
+      <button class="menu-toggle" id="mobileMenuBtn">
+        <div class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span class="menu-text">Menú</span>
+      </button>
+    </div>
+  </header>
+  
+  <!-- Navegación -->
+  <nav>    
+    <div class="container nav-container" id="navContainer">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">INICIO</a>
+        </li>
+        <li class="nav-item">
+          <a href="sub_direccion_de_equipo_mecanico.html" class="nav-link">SUB DIRECCIÓN DE EQUIPO MECÁNICO</a>
+        </li>
+        <li class="nav-item">
+          <a href="sub_dirección_de_estudios_y_supervicion.html" class="nav-link">SUB DIRECCIÓN<br>DE ESTUDIOS Y SUPERVISIÓN</a>
+        </li>
+        <li class="nav-item">
+          <a href="sub_direccion_de_laboratorio_de_suelos.html" class="nav-link">SUB DIRECCIÓN DE LABORATORIO DE SUELO</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Sistema de Información de Obras Públicas</h1>
+      <a href="https://infobras.contraloria.gob.pe/InfobrasWeb/Login/Index" class="btn">Iniciar Sesión</a>
+    </div>
+
+    <div class="hero-content">
+      <h1>Sistema de seguimiento de inversiones</h1>
+      <a href="https://ofi5.mef.gob.pe/ssi/ssi/Index" class="btn">Acceder</a>
+    </div>
+
+    <div class="hero-content">
+      <h1>Banco de Inversiones</h1>
+      <a href="https://ofi5.mef.gob.pe/invierte/consultapublica/consultainversiones" class="btn">Consulta de Inversiones</a>
+    </div>
+
+    <div class="hero-content">
+      <h1>Manuales de Carreteras</h1>
+      <a href="https://portal.mtc.gob.pe/transportes/caminos/normas_carreteras/manuales.html" class="btn">Acceder</a>
+    </div>
+  </section>
+
+  <!-- Banner -->
+  <img src="https://i.postimg.cc/kXPFVWNp/deiv-3.jpg" alt="Dirección Ejecutiva de Infraestructura Vial" class="banner-img">
+  
+
+
+  <!-- Servicios -->
+  <section class="services">
+    <div class="container">
+      <h2 class="section-title">La Dirección Ejecutiva de Infraestructura Vial</h2>
+      <p>Es un órgano de línea responsable de proponer y ejecutar los lineamientos de política del sector, en lo referente al desarrollo y la normatividad de las actividades de construcción, mejoramiento, rehabilitación y mantenimiento de la infraestructura de transporte terrestre. Asimismo, supervisa y evalúa la aplicación de dichas políticas en concordancia con la normativa vigente.</p>
+      <p>Esta dirección tiene como principal responsabilidad la ejecución de obras viales estratégicas a nivel regional, con énfasis en la conectividad y el desarrollo territorial. Uno de los proyectos emblemáticos es la carretera Iquitos-Nauta, cuya intervención representa un avance sustancial en la integración vial de la región.</p>
+    </div>
+  </section>
+
+  <!-- Noticias -->
+  <section class="news">
+    <div class="container">
+      <h2 class="section-title">"La Dirección Ejecutiva de Infraestructura Vial Lidera la Ejecución de Proyectos Estratégicos para el Fortalecimiento de la Conectividad Regional"</h2>
+      
+      <div class="news-grid">
+        <!-- Noticia 1 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/1XSrkv6x/deiv-4.jpg" alt="deiv-4" class="news-img">
+          <div class="news-content">
+            <h3>"MEJORAMOS LAS RUTAS DEPARTAMENTALES DE NUESTRA REGIÓN GRACIAS AL CONVENIO CON PROVÍAS DESCENTRALIZADO"</h3>
+            <p>Los trabajos de mantenimiento periódico y rutinario de las diferentes rutas departamentales en nuestra región se vienen ejecutando gracias al convenio suscrito con PROVÍAS Descentralizado, entidad que financia íntegramente estas intervenciones. Actualmente, se realiza el mantenimiento de seis rutas departamentales a nivel regional.</p>
+            <p>Para este año 2025, tenemos programado ejecutar 25 proyectos de inversión con un total de S/ 245, 196,215.05.Entre estos proyectos contamos con la reparación de 8 alcantarillas ubicadas en las diferentes progresivas que se encuentra en mal estado, además de reparación de vías de acceso de diferentes pueblos, asi como también el mejoramientos de puentes.</p>
+            <span class="news-date">25 de Abril, 2025</span>
+          </div>
+        </div>
+        
+        <!-- Noticia 2 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/50yb950C/bacheo.jpg" alt="Trabajos de bacheo" class="news-img">
+          <div class="news-content">
+            <h3>"MEJORAMOS LA TRANSITABILIDAD EN LA CARRETERA IQUITOS–NAUTA PARA IMPULSAR LA ECONOMÍA DE LAS COMUNIDADES CONECTADAS"</h3>
+            <p>La Dirección Ejecutiva de Infraestructura Vial (DEIV), mediante la Subdirección de Estudios y Supervisión, ejecuta proyectos de construcción, mejoramiento y rehabilitación dentro de la red vial departamental. Entre ellos destaca la intervención en la carretera Iquitos–Nauta, cuya sostenida ejecución contribuye al mantenimiento de la vía y al desarrollo socioeconómico de los asentamientos ubicados en su eje.</p>
+            <span class="news-date">28 de Abril, 2025</span>
+          </div>
+        </div>
+        
+        <!-- Noticia 3 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/bJ5KT4FR/deiv-15.jpg" alt="Obras viales en la carretera Iquitos–Nauta" class="news-img">
+          <div class="news-content">
+            <h3>MÁS QUE UNA CARRETERA: CONECTAMOS COMUNIDADES Y GENERAMOS EMPLEO EN LA RUTA IQUITOS–NAUTA</h3>
+             <p>La Carretera Iquitos – Nauta a lo largo de sus progresivas cuenta con 35 vías vecinales que se conectan, por ello es importante realizar trabajos que ayuden a mejorar la Transitabilidad de estos pueblos, brindando mejores acceso para la distribución de sus productos en el mercado y así mejorar la economía de la región</p>
+             <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+
+        <!-- Noticia 4 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/HkbkR9wm/deiv-14.jpg" alt="Obras de la DEIV en carretera Iquitos–Nauta" class="news-img">
+           <div class="news-content">
+            <h3>"SUB DIRECCION DE ESTUDIOS Y SUPERVICION "</h3>
+             <p>La Dirección Ejecutiva de Infraestructura Vial, mediante su Sub dirección de Estudios y Supervisión, lidera proyectos estratégicos de construcción, mejoramiento y rehabilitación en la red vial departamental de Loreto. Entre ellos destacan la intervención continua en la carretera Iquitos–Nauta y el mantenimiento de la ruta pavimentada LO-103, que conecta con 18 vías vecinales. Gracias al financiamiento de Provías Descentralizado, se optimizan los accesos viales, se reduce el tiempo y costo del transporte, y se fortalece el desarrollo económico y la integración territorial de la región.</p>
+            <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+
+        <!-- Noticia 5 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/Z5s71nNx/laborario-4.jpg" alt="Laboratorio de Suelos" class="news-img">
+           <div class="news-content">
+            <h3>"SUB DIRECCIÓN DE LABORATORIO DE SUELOS"</h3>
+            <p>Forma parte de la estructura técnica de la dirección ejecutiva de infraestructura vial, que tiene a su cargo la supervisión, administración y articulación de sus funciones en el marco del desarrollo de infraestructura vial en la región, es el órgano técnico especializado de la dirección ejecutiva de infraestructura vial, responsable de realizar ensayos y estudios de calidad de materiales para obras viales. su función es garantizar resultados confiables y normados que respalden el diseño, construcción y mantenimiento de la infraestructura de transporte en la región loreto.</p>
+            <p>El laboratorio de suelos y asfalto es pionera en la región, contamos con equipos con una antigüedad no mayor de 2 años; y estamos en la capacidad de realizar cualquier tipo de ensayo y en particular ensayos para la caractirazación del asfalto y diseño de mezclas asfálticas, ensayos que no se realiza en otro laboratorio de la ciudad.</p>
+            <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+
+        <!-- Noticia 6 -->
+        <div class="news-card">
+          <img src="https://i.postimg.cc/DzXdLhcP/deiv-19.jpg" alt="Laboratorio de Suelos - Ensayos Técnicos" class="news-img">
+           <div class="news-content">
+            <h3>"📌SUB DIRECCIÓN DE EQUIPO MECÁNICO, SUPERVISA EL USO RESPONSABLE DE LAS MAQUINARIA, ASEGURANDO SU OPERATIVIDAD EN CADA PROYECTO VIAL."</h3>
+            <p>La Sub dirección de Equipo Mecánico es un órgano técnico-operativo dependiente de la Dirección Ejecutiva de Infraestructura Vial, encargado de gestionar, supervisar y mantener en óptimas condiciones la maquinaria pesada utilizada en los proyectos de infraestructura vial del Gobierno Regional de Loreto. Su labor garantiza la operatividad y disponibilidad de los equipos, contribuyendo directamente a la ejecución eficiente de obras que mejoran la conectividad y el desarrollo territorial de la región.</p>
+            <span class="news-date">23 de Abril, 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos -->
+  
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="https://i.postimg.cc/prTd5bLq/logos-nuevo-2.png" alt="GRTC Loreto" style="max-height: 100px; margin-bottom: 20px;">
+          <p>Gerencia Regional de Transportes y Comunicaciones de Loreto - Promoviendo el desarrollo de la infraestructura vial y los sistemas de transporte y comunicaciones en la región.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/share/1KvDfa2hej/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Contacto</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-envelope"></i> <a href="mailto:drtc@regionloreto.gob.pe">drtc@regionloreto.gob.pe</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:mesapartesdrtc@regionloreto.gob.pe">mesapartesdrtc@regionloreto.gob.pe</a></li>
+            <li><i class="fas fa-map-marker-alt"></i><a href="https://www.google.com/maps?q=Av.+José+Abelardo+Quiñones+KM+3.5,+San+Juan,+Loreto,+Perú" target="_blank">Av. José Abelardo Quiñones<br> KM 3.5 San Juan</a></li>
+            <li><i class="fas fa-clock"></i> Atenciones al Publico L-V 7:00am - 3:00pm</li>
+            <li><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/share/1KvDfa2hej/?mibextid=wwXIfr"target="_blank">Facebook oficial</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Enlaces rápidos</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-laptop"></i><a href="https://www.regionloreto.gob.pe/tramites-en-linea" target="_blank">Trámites en Línea</a></li>
+            <li><i class="fas fa-car-crash"></i><a href="https://scppp.mtc.gob.pe/" target="_blank">Consulta de Multas de Vehículos</a></li>
+            <li><i class="fas fa-file-download"></i><a href="https://www.regionloreto.gob.pe/formularios" target="_blank">Descarga de Formularios</a></li>
+            <li><a href="#">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Enlaces institucionales</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-eye"></i><a href="https://www.transparencia.gob.pe/enlaces/pte_transparencia_enlaces.aspx?id_entidad=18822#.Y_fJdnbMK71" target="_blank">Portal de Transparencia</a></li>
+            <li><i class="fas fa-landmark"></i><a href="https://www.regionloreto.gob.pe" target="_blank">Gobierno Regional de Loreto</a></li>
+            <li><i class="fas fa-satellite-dish"></i><a href="https://www.gob.pe/mtc" target="_blank">Ministerio de transportes MTC</a></li>
+            <li><i class="fas fa-stamp"></i><a href="https://www.sunarp.gob.pe" target="_blank">SUNARP</a></li>
+            <li><i class="fas fa-road"></i><a href="https://www.sutran.gob.pe" target="_blank">SUTRAN</a></li>
+            <li><i class="fas fa-signal"></i> <a href="https://www.osiptel.gob.pe" target="_blank">OSIPTEL</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Gobierno Regional de Loreto - GRTC. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Menú móvil
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navContainer = document.getElementById('navContainer');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      this.classList.toggle('active');
+      navContainer.classList.toggle('active');
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+          mobileMenuBtn.classList.remove('active');
+          navContainer.classList.remove('active');
+        }
+      });
+    });
+    
+    // Cerrar menú al hacer clic fuera del menú
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.nav-container') && !e.target.closest('.menu-toggle') && window.innerWidth <= 768) {
+        mobileMenuBtn.classList.remove('active');
+        navContainer.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
